@@ -1,3 +1,4 @@
+import s from "./SearchBar.module.css";
 const SearchBar = ({ handleSubmit }) => {
   const handelSubmit = (evt) => {
     evt.preventDefault();
@@ -9,16 +10,21 @@ const SearchBar = ({ handleSubmit }) => {
     form.reset();
   };
   return (
-    <form onSubmit={handelSubmit}>
-      <input
-        type="text"
-        autoComplete="off"
-        autoFocus
-        name="query"
-        placeholder="Search images and photos"
-      />
-      <button type="submit">Search</button>
-    </form>
+    <div className={s.header}>
+      <form onSubmit={handelSubmit}>
+        <input
+          className={s.input}
+          type="text"
+          autoComplete="off"
+          autoFocus
+          name="query"
+          placeholder="Search images and photos"
+        />
+        <button className={s.btn} type="submit">
+          Search
+        </button>
+      </form>
+    </div>
   );
 };
 export default SearchBar;

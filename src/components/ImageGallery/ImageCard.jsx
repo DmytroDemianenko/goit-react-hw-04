@@ -1,8 +1,17 @@
-const ImageCard = () => {
+const ImageCard = (image) => {
+  // console.log(image);
+
   return (
-    <div>
-      <img src="" alt="" />
-    </div>
+    <li>
+      <div>
+        <img
+          src={image.urls.raw}
+          alt={image.alt_description}
+          width="280px"
+          height="280px"
+        />
+      </div>
+    </li>
   );
 };
 export default ImageCard;
