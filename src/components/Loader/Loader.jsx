@@ -1,16 +1,16 @@
 import React from "react";
-import { Watch } from "react-loader-spinner";
+import { ThreeDots } from "react-loader-spinner";
 
 const Loader = () => {
   return (
     <div>
-      <Watch
+      <ThreeDots
         visible={true}
-        height="60"
-        width="60"
-        radius="35"
-        color="#4fa94d"
-        ariaLabel="watch-loading"
+        height="80"
+        width="80"
+        color="red"
+        radius="9"
+        ariaLabel="three-dots-loading"
         wrapperStyle={{}}
         wrapperClass=""
       />

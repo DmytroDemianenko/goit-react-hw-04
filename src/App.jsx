@@ -12,10 +12,15 @@ function App() {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [page, setPage] = useState("");
+  const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const openModal = () => setIsOpen(true);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const openModal = (image) => {
+    setIsOpen(true);
+    setSelectedImage(image);
+  };
   const closeModal = () => setIsOpen(false);
 
   useEffect(() => {
@@ -45,18 +50,20 @@ function App() {
   const handleSetQuery = (query) => {
     setQuery(query);
     setImages([]);
-    setPage(0);
+    setPage(1);
   };
 
-  console.log(page);
+  // console.log(image);
   return (
     <>
       <div className="container">
         <SearchBar handleSubmit={handleSetQuery} />
-        {query.length > 0 && <ImageGallery images={images} />}
+        {query.length > 0 && (
+          <ImageGallery images={images} openModal={openModal} />
+        )}
         {isError && <ErrorMessage />}
-        <button onClick={openModal}>Open modal</button>
-        {isOpen && <ImageModal onClose={closeModal} />}
+        {/* <button onClick={openModal}>Open modal</button> */}
+        {isOpen && <ImageModal onClose={closeModal} image={selectedImage} />}
         {/* <ImageModal/> */}
         {isLoading && <Loader />}
         {query.length > 0 && <LoadMoreBtn increasePage={handleChangePage} />}

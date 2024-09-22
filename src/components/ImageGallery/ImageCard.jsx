@@ -1,14 +1,18 @@
-const ImageCard = (image) => {
+import s from "./ImageGallery.module.css";
+const ImageCard = ({ image, openModal }) => {
   // console.log(image);
+  const { urls, alt_description } = image;
 
   return (
     <li>
       <div>
         <img
-          src={image.urls.raw}
-          alt={image.alt_description}
+          className={s.image}
+          src={urls.small}
+          alt={alt_description}
           width="280px"
           height="280px"
+          onClick={openModal}
         />
       </div>
     </li>
