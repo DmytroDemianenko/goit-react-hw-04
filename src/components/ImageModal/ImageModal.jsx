@@ -23,12 +23,11 @@ const ImageModal = ({ onClose, image }) => {
     };
   }, [onClose]);
   return (
-    <div onClick={handleBackdropClick} className={s.wrapper}>
+    <div className={s.wrapper} onClick={handleBackdropClick}>
       <div className={s.content}>
-        <>
-          <h2 className={s.title}>{alt_description}</h2>
-          <img src={urls.regular} alt={alt_description} />
-        </>
+        <img className={s.picture} src={urls.regular} alt={alt_description} />
+        <h2 className={s.title}>Title: {alt_description}</h2>
+
         <button onClick={onClose} className={s.closeBtn}>
           ×
         </button>

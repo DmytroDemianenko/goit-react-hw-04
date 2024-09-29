@@ -1,6 +1,5 @@
 import s from "./ImageGallery.module.css";
 const ImageCard = ({ image, openModal }) => {
-  // console.log(image);
   const { urls, alt_description } = image;
 
   return (
@@ -10,8 +9,8 @@ const ImageCard = ({ image, openModal }) => {
           className={s.image}
           src={urls.small}
           alt={alt_description}
-          width="280px"
-          height="280px"
+          width="450px"
+          height="240px"
           onClick={openModal}
         />
       </div>

@@ -5,28 +5,41 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
+
 .content {
-  position: relative;
+  display: flex;
   background-color: white;
+  max-width: 100vw;
+  max-height: 80vh;
+  justify-content: flex-start;
+  box-shadow: "0 5px 10px rgba(0, 0, 0, 0.2)";
+  transition: "opacity 0.3s ease-in-out";
   padding: 20px;
-  overflow: hidden;
-  max-width: 1000px;
-  border-radius: 5px;
-  h1 {
-    font-size: 2rem;
-  }
 }
+
+.title {
+  font-size: 24px;
+  color: rgb(22, 22, 26);
+}
+
+.picture {
+  display: flex;
+  border-radius: 15px;
+  padding: 5px;
+  overflow: cover;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .closeBtn {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 55px;
+  right: 15px;
   background-color: transparent;
   border: none;
   font-size: 20px;
   cursor: pointer;
   color: black;
-}
-.title {
-  color: blue;
 }

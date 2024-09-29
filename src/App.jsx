@@ -7,6 +7,7 @@ import Loader from "./components/Loader/Loader";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import ImageModal from "./components/ImageModal/ImageModal";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [images, setImages] = useState([]);
@@ -33,7 +34,6 @@ function App() {
         setIsLoading(true);
         const data = await fetchImages(page, query);
         setImages((prev) => [...prev, ...data.results]);
-        // console.log(data);
       } catch {
         setIsError(true);
       } finally {
@@ -53,18 +53,20 @@ function App() {
     setPage(1);
   };
 
-  // console.log(image);
   return (
     <>
       <div className="container">
+        <div>
+          <Toaster position="top-center" reverseOrder={false} />
+        </div>
         <SearchBar handleSubmit={handleSetQuery} />
+        {isError && <ErrorMessage />}
         {query.length > 0 && (
           <ImageGallery images={images} openModal={openModal} />
         )}
-        {isError && <ErrorMessage />}
-        {/* <button onClick={openModal}>Open modal</button> */}
+
         {isOpen && <ImageModal onClose={closeModal} image={selectedImage} />}
-        {/* <ImageModal/> */}
+
         {isLoading && <Loader />}
         {query.length > 0 && <LoadMoreBtn increasePage={handleChangePage} />}
       </div>
