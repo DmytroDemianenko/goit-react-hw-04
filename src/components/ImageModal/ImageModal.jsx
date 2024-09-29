@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import s from "./ImageModal.module.css";
 const ImageModal = ({ onClose, image }) => {
-  const { urls, alt_description } = image;
+  const { user, urls, alt_description, likes } = image;
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -26,7 +26,11 @@ const ImageModal = ({ onClose, image }) => {
     <div className={s.wrapper} onClick={handleBackdropClick}>
       <div className={s.content}>
         <img className={s.picture} src={urls.regular} alt={alt_description} />
-        <h2 className={s.title}>Title: {alt_description}</h2>
+        <div className={s.contentWrapper}>
+          <h2 className={s.title}>Title: {alt_description}</h2>
+          <p className={s.title}>Likes: {likes}</p>
+          <p className={s.title}>Author: {user.name}</p>
+        </div>
 
         <button onClick={onClose} className={s.closeBtn}>
           ×
