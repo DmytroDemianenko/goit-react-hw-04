@@ -18,7 +18,7 @@
 }
 .btn {
   display: inline-block;
-  z-index: 500;
+  z-index: 1;
   position: absolute;
   top: 20px;
   width: 20px;

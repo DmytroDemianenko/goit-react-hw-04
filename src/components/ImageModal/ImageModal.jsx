@@ -1,7 +1,20 @@
 import { useEffect } from "react";
+import Modal from "react-modal";
 import s from "./ImageModal.module.css";
-const ImageModal = ({ onClose, image }) => {
-  const { user, urls, alt_description, likes } = image;
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
+
+const ImageModal = ({ onClose, image, modalIsOpen }) => {
+  const { urls, alt_description } = image;
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -16,27 +29,26 @@ const ImageModal = ({ onClose, image }) => {
       }
     };
     document.addEventListener("keydown", handleKeyDown);
-
-    console.log(image);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [onClose]);
+  }, [onClose, image]);
   return (
-    <div className={s.wrapper} onClick={handleBackdropClick}>
-      <div className={s.content}>
-        <img className={s.picture} src={urls.regular} alt={alt_description} />
-        <div className={s.contentWrapper}>
-          <h2 className={s.title}>Title: {alt_description}</h2>
-          <p className={s.title}>Likes: {likes}</p>
-          <p className={s.title}>Author: {user.name}</p>
-        </div>
-
-        <button onClick={onClose} className={s.closeBtn}>
-          ×
-        </button>
+    <Modal
+      onClick={handleBackdropClick}
+      isOpen={modalIsOpen}
+      onRequestClose={onClose}
+      style={customStyles}
+    >
+      <img className={s.picture} src={urls.regular} alt={alt_description} />
+      <div className={s.contentWrapper}>
+        <h2 className={s.title}>Title: {alt_description}</h2>
       </div>
-    </div>
+
+      <button onClick={onClose} className={s.closeBtn}>
+        ×
+      </button>
+    </Modal>
   );
 };
 

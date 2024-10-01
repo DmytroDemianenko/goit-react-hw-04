@@ -15,7 +15,7 @@ function App() {
   const [isError, setIsError] = useState(false);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
   const openModal = (image) => {
@@ -65,7 +65,13 @@ function App() {
           <ImageGallery images={images} openModal={openModal} />
         )}
 
-        {isOpen && <ImageModal onClose={closeModal} image={selectedImage} />}
+        {modalIsOpen && (
+          <ImageModal
+            onClose={closeModal}
+            image={selectedImage}
+            modalIsOpen={modalIsOpen}
+          />
+        )}
 
         {isLoading && <Loader />}
         {query.length > 0 && <LoadMoreBtn increasePage={handleChangePage} />}
